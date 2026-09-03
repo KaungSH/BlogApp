@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Post View</title>
+</head>
+<style>
+.error {
+	color: red;
+}
+</style>
+<div layout:fragment="content">
+	<div class="bg-light" th:object="${post}">
+		<div class="container py-5">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 col-xl-7">
+					<div class="card shadow-sm">
+
+						<div class="card-header bg-secondary text-white">
+							<h2 class="fw-bold text-center text-decoration-underline mb-4" th:text="*{title}"></h2>
+						</div>
+
+						<div class="card-body p-4">
+
+								<div class="mb-4 text-center">
+									<br> <img th:if="${post.coverImgName != null}"
+										th:src="@{'/images/' + ${post.coverImgName}}"
+										alt="Thumbnail Error"
+										style="height: 300px; width: auto; object-fit: cover;" />
+									<div th:unless="${post.coverImgName != null}">No Image</div>
+								</div>
+								
+								<div class="mb-4">
+									<label>Category : <span class = "card-text" th:text = "*{categoryName}"></span> | Tags : [<span class = "card-text" th:text = "*{tagNames != null and tagNames != 'null' ? tagNames : '!!No Tags!!'}"></span>]</label>
+								</div>
+								<hr>
+								<div class="mb-4">
+									<p th:text="*{content}"></p>
+								</div>
+
+								<div
+									class="d-flex justify-content-between align-items-center pt-3 border-top">
+
+									<a th:href="@{/posts}" class="btn btn-secondary">
+										Go Back To Posts </a>
+								</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Bootstrap JavaScript -->
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	</div>
+	</div>
+</div>
+</html>

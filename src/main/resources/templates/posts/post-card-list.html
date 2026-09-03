@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate = "~{layouts/public_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Posts</title>
+</head>
+<div layout:fragment = "content">
+	<h2 class="fw-bold text-center text-decoration-underline mb-4">Post List</h2>
+	<div class = "row mt-4 g-5">
+		<div class = "col-md-3" th:each = "p, state:${posts}">
+			<div class = "card shadow-sm">
+				<div class = "card-body">
+				
+					<div style="text-align: center;"><div style="align-items: center; width: 100%;">
+				        <img class = "shadow-lg" th:if="${p.coverImgName != null}" 
+				             th:src="@{'/images/' + ${p.coverImgName}}" 
+				             alt="Thumbnail Error" 
+				             style="height: 198px; width: auto; object-fit: cover; border-radius: 8px;" />
+				             
+				        <div th:unless="${p.coverImgName != null}">No Image</div>
+				    </div></div>
+				    
+					<h5 class = "card-title" th:text = "${p.title}"></h5>
+					
+					<p class = "card-text" th:text = "${p.categoryName}"></p>
+					<p class = "card-text" th:text = "${p.tagNames != null and p.tagNames != 'null' ? p.tagNames : '!!No Tags!!'}"></p>
+					<p class = "card-text" th:text = "${p.createdAt}"></p>
+					<p><a th:href = "@{/posts/detail/{id}(id = ${p.id})}">Read Post</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

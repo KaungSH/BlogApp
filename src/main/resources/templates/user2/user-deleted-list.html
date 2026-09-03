@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate = "~{layouts/admin_layout}">
+<head>
+<meta charset="UTF-8">
+<title>User Deleted List</title>
+</head>
+<div layout:fragment = "content">
+	<h2>Deleted User List</h2>
+	<table class = "table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>No.</th>
+				
+				<th>Profile Photo</th>
+				
+				<th>User Name</th>
+				
+				<th>Email</th>
+				
+				<th>Phone</th>
+				
+				<th>Role</th>
+				
+				<th>Status</th>
+
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="u,state:${users}" style = "height : 200px">
+				<td th:text = "${state.count}"></td>
+				
+				<td style="text-align: center;">
+				    <div style="align-items: center; width: 100%;">
+				        <img th:if="${u.photo != null}" 
+				             th:src="@{/photos/{id}(id=${u.id})}" 
+				             alt="Thumbnail Error" 
+				             style="height: 198px; width: auto; object-fit: cover; border-radius: 8px;" />
+				             
+				        <div th:unless="${u.photo != null}">No Image</div>
+				    </div>
+				</td>
+				
+				<td th:text = "${u.username}"></td>
+				
+				<td th:text = "${u.email}"></td>
+				
+				<td th:text = "${u.phone}"></td>
+				
+				<td th:text = "${u.role}"></td>
+				
+				<td th:text = "${u.status}"></td>
+				
+				<td>
+					<a th:href = "@{/users/status/{id}(id = ${u.id})}">Change Status</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>

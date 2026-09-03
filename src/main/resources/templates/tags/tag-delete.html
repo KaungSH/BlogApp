@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate = "~{layouts/admin_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Delete Tag - BlogApp</title>
+</head>
+<div layout:fragment = "content">
+	<h2>Delete Tag Form</h2>
+	<div>
+		<dl>
+			<dt> Tag Name </dt>
+			<dd th:text = "${tag.name}"></dd>
+			<dt> Description </dt>
+			<dd th:text = "${tag.description}"></dd>
+		</dl>
+	</div>
+	<div style="display: flex; gap: 20px;">
+		<form method = "post" th:action = "@{/tags/delete}" th:object = "${tag}">
+			<input type = "hidden" th:field = "${tag.id}"/>
+			<input type = "submit" value = "Delete Confirm"/>
+		</form>
+		<form method = "get" th:action = "@{/tags}" th:object = "${tag}">
+			<input type = "submit" value = "Cancel"/>
+		</form>
+	</div>
+</div>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate = "~{layouts/admin_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Home - Admin</title>
+</head>
+<div layout:fragment = "content">
+	Hello!!!
+	<div th:if = "${session.loggedInUser != null}">
+		<strong th:text="${session.loggedInUser.username}"></strong>
+	</div>
+	<a th:href="@{/posts}" class="btn btn-dark">Go to Posts.</a>
+	<a th:href="@{/categories}" class="btn btn-dark">Go to Categories.</a>
+	<a th:href="@{/tags}" class="btn btn-dark">Go to Tags.</a>
+	<a th:if = "${session.loggedInUser.role == T(ai.blogapp.model.Role).SUPERADMIN}" th:href="@{/users}" class="btn btn-dark">Go to Users.</a>
+</div>
+</html>
