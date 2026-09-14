@@ -130,7 +130,7 @@
                                     <div class="form-check"
                                          th:each="t : ${availableTags}">
 
-                                        <input class="form-check-input bg-secondary" type="checkbox" th:field="*{tagIds}" th:value="${t.id}" th:id="${'tag-' + t.id}">
+                                        <input class="form-check-input bg-secondary" type="checkbox" th:field="*{tagIds}" th:value="${t.id}" th:id="${'tag-' + t.id}" required>
                                         <label class="form-check-label" th:for="${'tag-' + t.id}" th:text="${t.name}"></label>
                                     </div>
                                 </div>
